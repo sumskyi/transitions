@@ -45,8 +45,7 @@ module Transitions
       when Array
         transitions = @on_transition
         transitions.each do |method|
-          @on_transition = method
-          execute(obj, *args)
+          obj.send(method, *args)
         end
       when Symbol, String
         obj.send(@on_transition, *args)
